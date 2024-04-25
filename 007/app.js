@@ -8,6 +8,9 @@ app.get("/", (req, res) => {
   res.status(200).send("Hello Node!");
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/contacts", require("./routes/contactRouter"));
 
 app.listen(PORT, () => {
