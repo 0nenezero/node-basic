@@ -5,6 +5,9 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
+// load public file
+app.use(express.static("./public"));
+
 const dbConnect = require("./config/dbConnect");
 
 const router = express.Router();

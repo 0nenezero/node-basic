@@ -20,7 +20,10 @@
     <ul class="user-list">
       <% users.forEach(user => { %>
       <li><strong>Name: </strong> <%= user.name %></li>
-      <li><strong>Email: </strong> <%= user.email %></li>
+      <li>
+        <strong>Email: </strong>
+        <a href="mailto:<%= user.email %>"><%= user.email %></a>
+      </li>
       <% }) %>
     </ul>
   </body>
