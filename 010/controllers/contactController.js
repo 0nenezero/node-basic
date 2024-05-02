@@ -20,28 +20,24 @@ const addContactForm = (req, res) => {
 };
 
 // @desc Create a contact
-// @route POST /contacts
+// @route POST /contacts/add
 const createContact = asyncHandler(async (req, res) => {
   console.log(req.body);
   const { name, email, phone } = req.body;
-  if (!name || !email || !phone) {
-    return res.status(400).send(`A required value has not been entered.`);
-  }
   const contact = await Contact.create({
     name,
     email,
     phone,
   });
-  res.status(201).send("Create Contacts");
+  // res.status(201).send("Create Contacts");
+  res.redirect("/contacts");
 });
 
 // @desc Get contact
 // @route GET /contacts/:id
 const getContact = asyncHandler(async (req, res) => {
-  // const name = req.params.id;
-  // const contact = await Contact.findOne({ name });
   const contact = await Contact.findById(req.params.id);
-  res.status(200).send(contact);
+  res.render("update", { contact });
 });
 
 // @desc Update contact
