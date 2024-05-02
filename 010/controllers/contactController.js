@@ -7,11 +7,7 @@ const Contact = require("../models/contactModel");
 const getAllContacts = asyncHandler(async (req, res) => {
   try {
     const contacts = await Contact.find();
-    const users = [
-      { name: "John", email: "john@aaa.bbb", phone: "123456" },
-      { name: "Jane", email: "jane@aaa.bbb", phone: "987654" },
-    ];
-    res.render("getAllContacts", { heading: "User List", users });
+    res.render("index", { contacts });
   } catch (err) {
     res.send(err.message);
   }
