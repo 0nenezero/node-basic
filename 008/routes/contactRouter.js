@@ -1,30 +1,14 @@
 const express = require("express");
 const router = express.Router();
+const {
+  getAllContacts,
+  createContact,
+  getContact,
+  updateContact,
+  deleteContact,
+} = require("../controllers/contactController");
 
-router
-  .route("/")
-  .get((req, res) => {
-    res.status(200).send("Contacts Page");
-  })
-  .post((req, res) => {
-    console.log(req.body);
-    const { name, email, phone } = req.body;
-    if (!name || !email || !phone) {
-      return res.status(400).send(`A required value has not been entered.`);
-    }
-    res.status(201).send("Create Contacts");
-  });
+router.route("/").get(getAllContacts).post(createContact);
+router.route("/:id").get(getContact).put(updateContact).delete(deleteContact);
 
 module.exports = router;
-
-router
-  .route("/:id")
-  .get((req, res) => {
-    res.status(200).send(`View Contacts ${req.params.id}`);
-  })
-  .put((req, res) => {
-    res.status(200).send(`Update Contacts ${req.params.id}`);
-  })
-  .delete((req, res) => {
-    res.status(200).send(`Delete Contacts ${req.params.id}`);
-  });
