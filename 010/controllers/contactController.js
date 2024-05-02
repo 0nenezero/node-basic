@@ -13,6 +13,12 @@ const getAllContacts = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc View add contact form
+// @route GET /contacts/add
+const addContactForm = (req, res) => {
+  res.render("add");
+};
+
 // @desc Create a contact
 // @route POST /contacts
 const createContact = asyncHandler(async (req, res) => {
@@ -82,4 +88,5 @@ module.exports = {
   getContact,
   updateContact,
   deleteContact,
+  addContactForm,
 };
