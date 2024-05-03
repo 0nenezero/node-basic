@@ -5,10 +5,12 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
+const dbConnect = require("./config/dbConnect");
+const methodOverride = require("method-override");
+
 // load public file
 app.use(express.static("./public"));
-
-const dbConnect = require("./config/dbConnect");
+app.use(methodOverride("_method"));
 
 const router = express.Router();
 const errorhandler = require("./middleware/errorhandler");
